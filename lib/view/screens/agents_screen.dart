@@ -31,12 +31,10 @@ class _AgentsScreenState extends State<AgentsScreen> {
         } else if (state is AgentSuccuss) {
           return Scaffold(
             backgroundColor: Colors.brown,
-            body: ListView.builder(
-              itemCount: state.characterModel.length,
-              itemBuilder: (context, index) {
-                final characterModel = state.characterModel[index];
-                return AgentBoxView(characterModel: characterModel);
-              },
+            body: PageView(
+              scrollDirection: Axis.vertical,
+              physics: const BouncingScrollPhysics(),
+              children: state.characterModel.map((characterModel) => AgentBoxView(characterModel: characterModel)).toList(),
             ),
           );
         } else {

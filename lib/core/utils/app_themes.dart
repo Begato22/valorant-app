@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 ThemeData lightTheme = ThemeData(
   useMaterial3: true,
   colorScheme: lightColorScheme,
   textTheme: const TextTheme(),
+  fontFamily: GoogleFonts.cinzel().fontFamily,
   tooltipTheme: TooltipThemeData(
     textStyle: TextStyle(
       color: lightColorScheme.onPrimaryContainer,
@@ -18,6 +20,7 @@ ThemeData darkTheme = ThemeData(
   useMaterial3: true,
   colorScheme: darkColorScheme,
   textTheme: const TextTheme(),
+  fontFamily: GoogleFonts.cinzel().fontFamily,
   tooltipTheme: TooltipThemeData(
     textStyle: TextStyle(
       color: darkColorScheme.onPrimaryContainer,

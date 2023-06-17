@@ -20,6 +20,7 @@ class ValorantApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: AppStrings.appTitle,
             theme: lightTheme,
             darkTheme: darkTheme,
