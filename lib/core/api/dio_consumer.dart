@@ -17,9 +17,9 @@ class DioConsumer implements ApiConsumer {
   HttpClient httpClient = HttpClient();
 
   DioConsumer({required this.client}) {
-    (client.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
-      client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
-      return client;
+    (client.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
+      httpClient.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+      return httpClient;
     };
     client.options
       ..baseUrl = EndPoints.baseUrl
@@ -73,23 +73,6 @@ class DioConsumer implements ApiConsumer {
 
   dynamic _handleDioError(DioException error) {
     switch (error.type) {
-      // case DioErrorType.response:
-      //   switch (error.response?.statusCode) {
-      //     case StatusCode.badRequest:
-      //       throw const BadRequestException();
-      //     case StatusCode.unauthorized:
-      //     case StatusCode.forbidden:
-      //       throw const UnauthorizedException();
-      //     case StatusCode.notFound:
-      //       throw const NotFoundException();
-      //     case StatusCode.conflict:
-      //       throw const ConflictException();
-
-      //     case StatusCode.internalServerError:
-      //       throw const InternalServerErrorException();
-      //   }
-      //   break;
-
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.badResponse:
         throw const BadRequestException();
