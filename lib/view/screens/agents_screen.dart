@@ -30,11 +30,20 @@ class _AgentsScreenState extends State<AgentsScreen> {
           return const ProgressWidget();
         } else if (state is AgentSuccuss) {
           return Scaffold(
-            backgroundColor: Colors.brown,
-            body: PageView(
-              scrollDirection: Axis.vertical,
-              physics: const BouncingScrollPhysics(),
-              children: state.characterModel.map((characterModel) => AgentBoxView(characterModel: characterModel)).toList(),
+            // backgroundColor: Colors.brown,
+            body: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0xFF52291A), Colors.transparent],
+                ),
+              ),
+              child: PageView(
+                scrollDirection: Axis.vertical,
+                physics: const BouncingScrollPhysics(),
+                children: state.characterModel.map((characterModel) => AgentBoxView(characterModel: characterModel)).toList(),
+              ),
             ),
           );
         } else {
