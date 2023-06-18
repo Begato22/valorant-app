@@ -15,7 +15,7 @@ class AgentBoxView extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 1.sh,
+          height: 0.9.sh,
           width: 1.sw,
           child: Stack(
             alignment: Alignment.center,
@@ -106,7 +106,7 @@ class AgentBoxView extends StatelessWidget {
         child: Image(
           fit: BoxFit.cover,
           image: imageProvider,
-          height: 0.7.sh,
+          height: 0.65.sh,
           width: 1.sw,
         ),
       ),
@@ -140,7 +140,7 @@ class AgentBoxView extends StatelessWidget {
         child: Image(
           fit: BoxFit.cover,
           image: imageProvider,
-          height: 0.4.sh,
+          height: 0.3.sh,
           width: 1.sw,
         ),
       ),

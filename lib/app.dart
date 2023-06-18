@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:valorant_app/config/routes/app_navigator.dart';
+import 'package:valorant_app/config/routes/app_routes.dart';
 import 'package:valorant_app/core/utils/app_strings.dart';
 import 'package:valorant_app/core/utils/app_themes.dart';
 import 'package:valorant_app/cubits/agent_cubit/agent_cubit.dart';
@@ -24,7 +26,8 @@ class ValorantApp extends StatelessWidget {
             title: AppStrings.appTitle,
             theme: lightTheme,
             darkTheme: darkTheme,
-            home: const AgentsScreen(),
+            onGenerateRoute: AppRoute.onGenerateRoute,
+            navigatorKey: AppNavigator.navigatorKey,
           );
         },
       ),
