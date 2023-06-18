@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valorant_app/core/utils/app_images.dart';
 import 'package:valorant_app/data/models/character_model.dart';
+import 'package:valorant_app/view/widgets/agent_not_found.dart';
 
 class AgentBoxView extends StatelessWidget {
   final CharacterModel characterModel;
@@ -115,20 +116,7 @@ class AgentBoxView extends StatelessWidget {
         width: 100.w,
         height: 100.w,
       ),
-      errorWidget: (context, url, error) => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            AppImages.placeholder,
-            width: 150.w,
-            height: 150.w,
-          ),
-          const Text(
-            'Agent Character Model Not Found',
-            style: TextStyle(color: Colors.white),
-          ),
-        ],
-      ),
+      errorWidget: (context, url, error) => const AgentNotFoundWidget(),
     );
   }
 

@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valorant_app/config/routes/app_routes.dart';
 import 'package:valorant_app/core/utils/app_images.dart';
 import 'package:valorant_app/cubits/agent_cubit/agent_cubit.dart';
+import 'package:valorant_app/view/widgets/agent_not_found.dart';
 import 'package:valorant_app/view/widgets/progress_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -92,21 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     width: double.infinity,
                                   ),
                                 ),
-                                errorWidget: (context, url, error) => Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      AppImages.placeholder,
-                                      width: 75.w,
-                                      height: 75.w,
-                                    ),
-                                    Text(
-                                      'Agent Character Model Not Found',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(color: Colors.white, fontSize: 10.sp),
-                                    ),
-                                  ],
-                                ),
+                                errorWidget: (context, url, error) => const AgentNotFoundWidget(isLarge: false),
                               ),
                             ],
                           ),
