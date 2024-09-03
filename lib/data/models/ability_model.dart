@@ -1,12 +1,13 @@
-// ignore_for_file: constant_identifier_names
+import 'package:json_annotation/json_annotation.dart';
 
-import 'package:valorant_app/data/models/agent_model.dart';
+part 'generated/ability_model.g.dart';
 
+@JsonSerializable()
 class AbilityModel {
-  Slot slot;
-  String displayName;
-  String description;
-  String? displayIcon;
+  final Slot slot;
+  final String displayName;
+  final String description;
+  final String? displayIcon;
 
   AbilityModel({
     required this.slot,
@@ -15,22 +16,10 @@ class AbilityModel {
     this.displayIcon,
   });
 
-  factory AbilityModel.fromJson(Map<String, dynamic> json) => AbilityModel(
-        slot: slotValues.map[json["slot"]]!,
-        displayName: json["displayName"],
-        description: json["description"],
-        displayIcon: json["displayIcon"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "slot": slotValues.reverse[slot],
-        "displayName": displayName,
-        "description": description,
-        "displayIcon": displayIcon,
-      };
+  // JSON serialization methods
+  factory AbilityModel.fromJson(Map<String, dynamic> json) => _$AbilityModelFromJson(json);
+  Map<String, dynamic> toJson() => _$AbilityModelToJson(this);
 }
 
-enum Slot { ABILITY1, ABILITY2, GRENADE, ULTIMATE, PASSIVE }
-
-final slotValues = EnumValues(
-    {"Ability1": Slot.ABILITY1, "Ability2": Slot.ABILITY2, "Grenade": Slot.GRENADE, "Passive": Slot.PASSIVE, "Ultimate": Slot.ULTIMATE});
+// Enum with JSON support
+enum Slot { Ability1, Ability2, Grenade, Passive, Ultimate }

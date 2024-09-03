@@ -6,7 +6,6 @@ import 'package:valorant_app/config/routes/app_routes.dart';
 import 'package:valorant_app/core/utils/app_strings.dart';
 import 'package:valorant_app/core/utils/app_themes.dart';
 import 'package:valorant_app/cubits/agent_cubit/agent_cubit.dart';
-import 'package:valorant_app/view/screens/agents_screen.dart';
 import 'package:valorant_app/injection_container.dart' as di;
 
 class ValorantApp extends StatelessWidget {

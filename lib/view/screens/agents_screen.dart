@@ -13,29 +13,35 @@ class AgentsScreen extends StatefulWidget {
 }
 
 class _AgentsScreenState extends State<AgentsScreen> {
+  List<Color> backgroundGradientColors = [];
   @override
   void initState() {
+    backgroundGradientColors = widget.characterModel.backgroundGradientColors.isEmpty ? [const Color(0xFF52291A)] : widget.characterModel.backgroundGradientColors.map((e) => hexToColor(e)).toList();
+    backgroundGradientColors.add(Colors.transparent);
     super.initState();
+  }
+
+  Color hexToColor(String hexString) {
+    final buffer = StringBuffer();
+    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+    buffer.write(hexString.replaceFirst('#', ''));
+    return Color(int.parse(buffer.toString(), radix: 16));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      appBar: AppBar(
-        backgroundColor: Color(0xFF52291A),
-        toolbarHeight: 25.h,
-      ),
-      // backgroundColor: Colors.brown,
+      appBar: AppBar(backgroundColor: backgroundGradientColors.first, toolbarHeight: 25.h),
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFF52291A), Colors.transparent],
+            colors: backgroundGradientColors,
           ),
         ),
-        child: AgentBoxView(characterModel: widget.characterModel),
+        child: AgentBoxView(characterModel: widget.characterModel, modelColors: backgroundGradientColors),
       ),
     );
   }

@@ -9,9 +9,7 @@ class ServerException extends Equatable implements Exception {
   List<Object?> get props => [message];
 
   @override
-  String toString() {
-    return '$message';
-  }
+  String toString() => '$message';
 }
 
 class FetchDataException extends ServerException {
@@ -42,4 +40,4 @@ class NoInternetConnectionException extends ServerException {
   const NoInternetConnectionException([message]) : super("No Internet Connection");
 }
 
-class CasheException implements Exception {}
+class CacheException implements Exception {}

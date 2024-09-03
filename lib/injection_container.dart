@@ -23,16 +23,7 @@ Future<void> init() async {
 
   sl.registerLazySingleton(() => Dio());
   sl.registerLazySingleton(() => AppInterceptors());
-  sl.registerLazySingleton(
-    () => LogInterceptor(
-      request: true,
-      requestBody: true,
-      requestHeader: true,
-      responseBody: true,
-      responseHeader: true,
-      error: true,
-    ),
-  );
+  sl.registerLazySingleton(() => LogInterceptor(request: true, requestBody: true, requestHeader: true, responseBody: true, responseHeader: true, error: true));
   sl.registerLazySingleton(() => InternetConnectionChecker());
 
   // ******************* Core *******************

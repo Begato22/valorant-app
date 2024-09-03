@@ -8,7 +8,18 @@ import 'package:valorant_app/view/widgets/agent_not_found.dart';
 
 class AgentBoxView extends StatelessWidget {
   final CharacterModel characterModel;
-  const AgentBoxView({super.key, required this.characterModel});
+  final List<Color> modelColors;
+  const AgentBoxView({super.key, required this.characterModel, required this.modelColors});
+
+  Color darkenColor(Color color, [double factor = 0.7]) {
+    assert(factor >= 0 && factor <= 1, 'Factor must be between 0 and 1');
+    return Color.fromARGB(
+      color.alpha,
+      (color.red * factor).toInt(),
+      (color.green * factor).toInt(),
+      (color.blue * factor).toInt(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,15 +52,16 @@ class AgentBoxView extends StatelessWidget {
   }
 
   Widget _buildAgentHeader() {
+    final cardColor = darkenColor(modelColors.first, 0.8);
     return Container(
       padding: REdgeInsets.all(10),
       width: 0.9.sw,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.r),
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           begin: AlignmentDirectional.topStart,
           end: AlignmentDirectional.bottomEnd,
-          colors: [Color(0xFF52291A), Colors.transparent],
+          colors: [cardColor, Colors.transparent],
         ),
       ),
       child: Column(
@@ -61,7 +73,7 @@ class AgentBoxView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100.r),
                 child: CircleAvatar(
                   radius: 25.r,
-                  backgroundColor: const Color(0xFF52291A),
+                  backgroundColor: cardColor,
                   child: CachedNetworkImage(
                     imageUrl: characterModel.displayIcon,
                     imageBuilder: (context, imageProvider) => Container(
@@ -75,7 +87,7 @@ class AgentBoxView extends StatelessWidget {
               SizedBox(width: 10.w),
               Text(
                 characterModel.displayName,
-                style: TextStyle(fontSize: 24.sp, color: Colors.white),
+                style: TextStyle(fontSize: 24.sp, color: Colors.black87),
               ),
             ],
           ),
@@ -85,7 +97,7 @@ class AgentBoxView extends StatelessWidget {
               TypewriterAnimatedText(
                 characterModel.description,
                 textAlign: TextAlign.justify,
-                textStyle: const TextStyle(color: Colors.white54),
+                textStyle: const TextStyle(color: Colors.black54),
                 speed: const Duration(milliseconds: 15),
               ),
             ],
