@@ -16,7 +16,7 @@ class CharacterModel {
   final String? bustPortrait;
   final String? fullPortrait;
   final String? fullPortraitV2;
-  // final String killfeedPortrait;
+  final String killfeedPortrait;
   final String? background;
   final List<String> backgroundGradientColors;
   final String assetPath;
@@ -39,8 +39,8 @@ class CharacterModel {
     this.bustPortrait,
     this.fullPortrait,
     this.fullPortraitV2,
-    // required this.killFeedPortrait,
     this.background,
+    required this.killfeedPortrait,
     required this.backgroundGradientColors,
     required this.assetPath,
     required this.isFullPortraitRightFacing,

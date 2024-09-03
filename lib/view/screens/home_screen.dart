@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
           return const ProgressWidget();
         } else if (state is AgentSuccuss) {
           return Scaffold(
-            backgroundColor: Colors.brown,
+            backgroundColor: Colors.grey.shade300,
             body: Padding(
               padding: REdgeInsets.symmetric(horizontal: 10),
               child: ListView(
@@ -49,8 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   SizedBox(height: 10.h),
-                  Expanded(
-                      child: GridView.builder(
+                  GridView.builder(
                     shrinkWrap: true,
                     physics: const BouncingScrollPhysics(),
                     itemCount: state.characterModel.length,
@@ -58,42 +57,91 @@ class _HomeScreenState extends State<HomeScreen> {
                       return GestureDetector(
                         onTap: () => Navigator.of(context).pushNamed(Routes.agentRoute, arguments: state.characterModel[index]),
                         child: Container(
-                          height: 100.h,
-                          width: 100.h,
+                          // height: 100.h,
+                          // width: 100.h,
                           decoration: BoxDecoration(
-                            color: Colors.brown.shade700,
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [Colors.grey.shade800, Colors.grey.shade400, Colors.grey.shade200],
+                            ),
                             borderRadius: BorderRadius.circular(10.r),
                           ),
-                          child: Stack(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              Opacity(
-                                opacity: 0.1,
-                                child: CachedNetworkImage(
-                                  imageUrl: state.characterModel[index].background ?? '',
-                                  imageBuilder: (context, imageProvider) => Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: Image(
-                                      fit: BoxFit.contain,
-                                      image: imageProvider,
-                                      height: 0.35.sh,
-                                      width: 1.sw,
+                              Padding(
+                                padding: REdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight,
+                                      colors: [Colors.grey.shade800, Colors.transparent],
                                     ),
+                                    borderRadius: BorderRadius.circular(7.r),
                                   ),
-                                  errorWidget: (context, url, error) => const SizedBox(),
+                                  child: Row(
+                                    children: [
+                                      CachedNetworkImage(
+                                        imageUrl: state.characterModel[index].killfeedPortrait,
+                                        imageBuilder: (context, imageProvider) => Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Image(
+                                            fit: BoxFit.contain,
+                                            image: imageProvider,
+                                            height: 20.h,
+                                            width: 60.w,
+                                          ),
+                                        ),
+                                        errorWidget: (context, url, error) => const AgentNotFoundWidget(isLarge: false),
+                                      ),
+                                      Spacer(),
+                                      Text(
+                                        state.characterModel[index].displayName,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15.sp,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
-                              CachedNetworkImage(
-                                imageUrl: state.characterModel[index].fullPortrait ?? '',
-                                imageBuilder: (context, imageProvider) => Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: Image(
-                                    fit: BoxFit.contain,
-                                    image: imageProvider,
-                                    height: 150.h,
-                                    width: double.infinity,
+                              const Spacer(),
+                              Stack(
+                                children: [
+                                  Opacity(
+                                    opacity: 0.1,
+                                    child: CachedNetworkImage(
+                                      imageUrl: state.characterModel[index].background ?? '',
+                                      imageBuilder: (context, imageProvider) => Container(
+                                        alignment: Alignment.centerLeft,
+                                        child: Image(
+                                          fit: BoxFit.contain,
+                                          image: imageProvider,
+                                          height: 0.25.sh,
+                                          width: 0.6.sw,
+                                        ),
+                                      ),
+                                      errorWidget: (context, url, error) => const SizedBox(),
+                                    ),
                                   ),
-                                ),
-                                errorWidget: (context, url, error) => const AgentNotFoundWidget(isLarge: false),
+                                  CachedNetworkImage(
+                                    imageUrl: state.characterModel[index].fullPortrait ?? '',
+                                    imageBuilder: (context, imageProvider) => Container(
+                                      alignment: Alignment.centerLeft,
+                                      child: Image(
+                                        fit: BoxFit.contain,
+                                        image: imageProvider,
+                                        height: 0.35.sh,
+                                        // width: 1.sw,
+                                      ),
+                                    ),
+                                    errorWidget: (context, url, error) => const AgentNotFoundWidget(isLarge: false),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -101,12 +149,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     },
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      mainAxisSpacing: 5,
-                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
                       crossAxisCount: 2,
-                      childAspectRatio: 1 / 1.25,
+                      childAspectRatio: 1 / 1.9,
                     ),
-                  )),
+                  ),
                 ],
               ),
             ),

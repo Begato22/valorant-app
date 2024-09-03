@@ -21,6 +21,7 @@ CharacterModel _$CharacterModelFromJson(Map<String, dynamic> json) =>
       fullPortrait: json['fullPortrait'] as String?,
       fullPortraitV2: json['fullPortraitV2'] as String?,
       background: json['background'] as String?,
+      killfeedPortrait: json['killfeedPortrait'] as String,
       backgroundGradientColors:
           (json['backgroundGradientColors'] as List<dynamic>)
               .map((e) => e as String)
@@ -50,6 +51,7 @@ Map<String, dynamic> _$CharacterModelToJson(CharacterModel instance) =>
       'bustPortrait': instance.bustPortrait,
       'fullPortrait': instance.fullPortrait,
       'fullPortraitV2': instance.fullPortraitV2,
+      'killfeedPortrait': instance.killfeedPortrait,
       'background': instance.background,
       'backgroundGradientColors': instance.backgroundGradientColors,
       'assetPath': instance.assetPath,
