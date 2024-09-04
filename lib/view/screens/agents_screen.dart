@@ -14,18 +14,18 @@ class AgentsScreen extends StatefulWidget {
 
 class _AgentsScreenState extends State<AgentsScreen> {
   List<Color> backgroundGradientColors = [];
+  late ColorScheme _colorScheme;
   @override
   void initState() {
-    backgroundGradientColors = widget.characterModel.backgroundGradientColors.isEmpty ? [const Color(0xFF52291A)] : widget.characterModel.backgroundGradientColors.map((e) => hexToColor(e)).toList();
+    backgroundGradientColors = widget.characterModel.backgroundGradientColors.isEmpty ? [_colorScheme.primary] : widget.characterModel.backgroundGradientColors;
     backgroundGradientColors.add(Colors.transparent);
     super.initState();
   }
 
-  Color hexToColor(String hexString) {
-    final buffer = StringBuffer();
-    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
-    buffer.write(hexString.replaceFirst('#', ''));
-    return Color(int.parse(buffer.toString(), radix: 16));
+  @override
+  void deactivate() {
+    _colorScheme = Theme.of(context).colorScheme;
+    super.deactivate();
   }
 
   @override
@@ -41,7 +41,7 @@ class _AgentsScreenState extends State<AgentsScreen> {
             colors: backgroundGradientColors,
           ),
         ),
-        child: AgentBoxView(characterModel: widget.characterModel, modelColors: backgroundGradientColors),
+        child: AgentBoxView(characterModel: widget.characterModel),
       ),
     );
   }

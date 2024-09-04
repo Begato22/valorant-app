@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valorant_app/config/routes/app_navigator.dart';
 import 'package:valorant_app/config/routes/app_routes.dart';
 import 'package:valorant_app/core/utils/app_strings.dart';
-import 'package:valorant_app/core/utils/app_themes.dart';
+import 'package:valorant_app/core/utils/color_schema.dart';
 import 'package:valorant_app/cubits/agent_cubit/agent_cubit.dart';
 import 'package:valorant_app/injection_container.dart' as di;
 
@@ -23,8 +23,7 @@ class ValorantApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: AppStrings.appTitle,
-            theme: lightTheme,
-            darkTheme: darkTheme,
+            theme: ThemeData(useMaterial3: true, colorScheme: appColorScheme, scaffoldBackgroundColor: const Color(0xFF3C2A36)),
             onGenerateRoute: AppRoute.onGenerateRoute,
             navigatorKey: AppNavigator.navigatorKey,
           );

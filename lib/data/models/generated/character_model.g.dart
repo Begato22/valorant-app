@@ -22,10 +22,8 @@ CharacterModel _$CharacterModelFromJson(Map<String, dynamic> json) =>
       fullPortraitV2: json['fullPortraitV2'] as String?,
       background: json['background'] as String?,
       killfeedPortrait: json['killfeedPortrait'] as String,
-      backgroundGradientColors:
-          (json['backgroundGradientColors'] as List<dynamic>)
-              .map((e) => e as String)
-              .toList(),
+      backgroundGradientColors: const ColorListConverter()
+          .fromJson(json['backgroundGradientColors'] as List),
       assetPath: json['assetPath'] as String,
       isFullPortraitRightFacing: json['isFullPortraitRightFacing'] as bool,
       isPlayableCharacter: json['isPlayableCharacter'] as bool,
@@ -53,7 +51,8 @@ Map<String, dynamic> _$CharacterModelToJson(CharacterModel instance) =>
       'fullPortraitV2': instance.fullPortraitV2,
       'killfeedPortrait': instance.killfeedPortrait,
       'background': instance.background,
-      'backgroundGradientColors': instance.backgroundGradientColors,
+      'backgroundGradientColors':
+          const ColorListConverter().toJson(instance.backgroundGradientColors),
       'assetPath': instance.assetPath,
       'isFullPortraitRightFacing': instance.isFullPortraitRightFacing,
       'isPlayableCharacter': instance.isPlayableCharacter,

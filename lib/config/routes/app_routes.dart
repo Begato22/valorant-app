@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:valorant_app/data/models/character_model.dart';
+import 'package:valorant_app/view/screens/agents_list_screen.dart';
 
 // import 'package:valorant_app/injection_container.dart' as di;
 import 'package:valorant_app/view/screens/agents_screen.dart';
@@ -8,6 +9,7 @@ import 'package:valorant_app/view/screens/home_screen.dart';
 class Routes {
   static const String initialRoute = '/';
   static const String agentRoute = '/agentRoute';
+  static const String agentListRoute = '/agentListRoute';
 }
 
 class AppRoute {
@@ -20,6 +22,10 @@ class AppRoute {
       case Routes.agentRoute:
         return MaterialPageRoute(
           builder: (context) => AgentsScreen(characterModel: routeSettings.arguments as CharacterModel),
+        );
+      case Routes.agentListRoute:
+        return MaterialPageRoute(
+          builder: (context) => AgentListScreen(characters: routeSettings.arguments as List<CharacterModel>),
         );
 
       default:

@@ -8,8 +8,7 @@ import 'package:valorant_app/view/widgets/agent_not_found.dart';
 
 class AgentBoxView extends StatelessWidget {
   final CharacterModel characterModel;
-  final List<Color> modelColors;
-  const AgentBoxView({super.key, required this.characterModel, required this.modelColors});
+  const AgentBoxView({super.key, required this.characterModel});
 
   Color darkenColor(Color color, [double factor = 0.7]) {
     assert(factor >= 0 && factor <= 1, 'Factor must be between 0 and 1');
@@ -52,7 +51,7 @@ class AgentBoxView extends StatelessWidget {
   }
 
   Widget _buildAgentHeader() {
-    final cardColor = darkenColor(modelColors.first, 0.8);
+    final cardColor = darkenColor(characterModel.backgroundGradientColors.first, 0.8);
     return Container(
       padding: REdgeInsets.all(10),
       width: 0.9.sw,
