@@ -1,7 +1,7 @@
 ![header-line-removebg-preview](https://github.com/user-attachments/assets/32bed087-c03c-427a-8058-ca3a34c8b2f3)
 
 
-# Valorant App
+# Valorant App 🎮 🎲
 ![Presentation1](https://github.com/user-attachments/assets/759c2a65-2fef-460e-b7d9-bbf370891588)
 ![Presentation2](https://github.com/user-attachments/assets/ad716922-ebc1-40bc-ba7f-bb0a8a3e132f)
 
